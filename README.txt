@@ -15,9 +15,9 @@ THIRD-PARTY LIBRARIES:
 * ColorPicker (in js/colorpicker)
 
 JAVASCRIPTS:
-* brushes.js: Defines all the brushes you can use in the app, including pencil, paint brush, etc.
+* js/brushes.js: Defines all the brushes you can use in the app, including pencil, paint brush, etc.
 
-* canvas.js: Defines all the interations with the canvas, e.g. changing the current brush, or colour
+* js/canvas.js: Defines all the interations with the canvas, e.g. changing the current brush, or colour
 
 CSS:
 * main.css: This file contains all the CSS settings for the game
