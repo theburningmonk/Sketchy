@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sketchy</title>
+	
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+	<link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui-1.8.9.custom.css"/>
+    <link rel="stylesheet" type="text/css" href="css/colorpicker.css"/>
+	
+	<script type="text/javascript" src="js/jquery/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-ui-1.8.9.custom.min.js"></script>
+	<script type="text/javascript" src="js/mootools/mootools-core-compressed-1.3.js"></script>
+    <script type="text/javascript" src="js/modernizr/modernizr-1.6.min.js"></script>
+    <script type="text/javascript" src="js/colorpicker/colorpicker.js"></script>
+    <script type="text/javascript" src="js/layout.js"></script>
+    <script type="text/javascript" src="js/brushes.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // display a warning message if canvas is not supported
+            if (!Modernizr.canvas) {
+                $("#message").html("<p><b>WARNING</b>: Your browser does not support HTML5's canvas feature, you won't be able to see the drawings below</p>");
+                $("article").hide();
+            } else {
+                initialize();
+            }
+        });
+
+        function initialize() {
+            initializeCanvas();
+        };
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <aside id="message"></aside>        
+
+        <div id="accordion">
+            <h2><a href="#">Step 1 - Create</a></h2>
+            <div>
+                <div id="canvas-panel" class="block">
+                    <canvas id="drawingCanvas" width="700" height="450"></canvas>
+			        <canvas id="overlay" width="700" height="450"
+                            onSelectStart="setCursor(this); return false;"></canvas>
+                </div>
+
+                <div id="tools-panel" class="block">
+                    <ul>
+                        <li class="tool-panel-button tool-button">
+                            <div id="stroke-colour-tool" class="block, fill">
+                                <p>Colour</p>
+                                <span id="stroke-colour"></span>
+                                <div id="stroke-colour-picker"></div>
+                            </div>                            
+                        </li>
+                        <!--<li class="tool-panel-button tool-button">
+                            <div id="line-width-tool" class="block, fill">
+                                <p>Line Width</p>
+                                <span id="line-width"></span>
+                                <div id="line-width-picker">
+                                    <ul>
+                                        <li class="tool-button"><span class="block" style="height: 1px"></span></li>
+                                        <li class="tool-button"><span class="block" style="height: 2px"></span></li>
+                                        <li class="tool-button"><span class="block" style="height: 3px"></span></li>
+                                        <li class="tool-button"><span class="block" style="height: 4px"></span></li>
+                                        <li class="tool-button"><span class="block" style="height: 5px"></span></li>
+                                        <li class="tool-button">Custom</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="tool-panel-button tool-button selected">
+                            <img id="pencil-tool" src="images/tools_panel_pencil_button.png" class="block, fill" />
+                        </li>
+                        <li class="tool-panel-button tool-button">
+                            <img id="spray-tool" src="images/tools_panel_spray_button.png" class="block, fill" />
+                        </li>
+                        <li class="tool-panel-button tool-button">
+                            <img id="paint-tool" src="images/tools_panel_paint_button.png" class="block, fill" />
+                        </li>
+                        <li class="tool-panel-button tool-button">
+                            <img id="colour-picker-tool" src="images/tools_panel_colour_picker_button.png" class="block, fill" />
+                        </li>
+                        <li class="tool-panel-button tool-button">
+                            <img id="eraser-tool" src="images/tools_panel_eraser_button.png" class="block, fill" />
+                        </li>
+                        <li class="tool-panel-button tool-button">
+                            <img id="delete-tool" src="images/tools_panel_delete_button.png" class="block, fill" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+			
+            <h2><a href="#">Step 2 - Save</a></h2>
+            <div>
+                <p>Saved image:</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
