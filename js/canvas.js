@@ -6,6 +6,7 @@ var canvasOffsetLeft,   // the left offset for the canvas elements
     overlayCanvasCxt,   // 2D drawing context for the overlay canvas
     strokeColour,       // the currently selected stroke colour
     currentBrush,       // the brush selected to paint on the drawing canvas
+    strokeColour,       // the span element showing the current stroke colour
     currentColour,      // what's the colour to use with the current brush
     backgroundColour,   // the background colour
     brushes;            // the available brushes
@@ -102,6 +103,8 @@ function initializeCanvas() {
     overlayCanvas = $("#overlay");
     overlayCanvasCxt = overlayCanvas.get(0).getContext("2d");
 
+    strokeColour = $("#stroke-colour");
+
     setCanvasOffsets();
 
     // when the window is resized, update the canvas offset as well
@@ -113,7 +116,9 @@ function initializeCanvas() {
         sprayBrush = new SprayBrush(10, 15, drawingCanvasCxt),
         eraserBrush = new EraserBrush(10, drawingCanvasCxt),
         paintBrush = new PaintBrush(50, drawingCanvasCxt),
-        colourPicker = new ColourPicker(drawingCanvasCxt);
+        colourPicker = new ColourPicker(drawingCanvasCxt, function (colour) {
+            setColour(colour);
+        });
 
     // define the available brushes
     brushes = {
@@ -140,4 +145,8 @@ function initializeCanvas() {
 function setColour(colour) {
     currentColour = colour;
     currentBrush.setColour(currentColour);
+
+    strokeColour.css("background", colour);
+
+    $("#stroke-colour-picker").ColorPickerSetColor(colour);
 }

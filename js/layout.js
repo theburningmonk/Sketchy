@@ -13,29 +13,34 @@ $(function () {
     });
 
     // set up colour picker
-    $("#stroke-colour-picker").ColorPicker({
+    var strokeColour = $("#stroke-colour"),
+        strokeColourPicker = $("#stroke-colour-picker");
+    strokeColourPicker.ColorPicker({
         flat: true,
         color: '#000',
+        onChange: function (hsb, hex, rgb) {
+            var hexColour = "#" + hex;
+            setColour(hexColour);
+        },
         onSubmit: function (hsb, hex, rgb) {
             var hexColour = "#" + hex;
-            $("#stroke-colour").css("background", hexColour);
             setColour(hexColour);
         }
     });
-
-    var strokeColourPicker = $("#stroke-colour-picker");
-    $("#stroke-colour-tool").hover(function () {
+    
+    $("#stroke-colour-tool").toggle(function () {
         strokeColourPicker.stop().animate({ height: 173 }, 500);
     }, function () {
         strokeColourPicker.stop().animate({ height: 0 }, 500);
     });
 
+    /*
     var lineWidthPicker = $("#line-width-picker");
-    $("#line-width-tool").hover(function () {
+    $("#line-width-tool").toggle(function () {
         lineWidthPicker.stop().animate({ height: 130 }, 500);
     }, function () {
         lineWidthPicker.stop().animate({ height: 0 }, 500);
-    });
+    });*/
 
     $("#delete-tool").click(function () {
         clearDrawing();

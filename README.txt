@@ -12,12 +12,16 @@ of different tools.
 
 THIRD-PARTY LIBRARIES:
 * jQuery (in js/jquery)
+* Modernizr (in js/modernizr)
+* MooTools (in js/mootools)
 * ColorPicker (in js/colorpicker)
 
 JAVASCRIPTS:
 * js/brushes.js: Defines all the brushes you can use in the app, including pencil, paint brush, etc.
 
 * js/canvas.js: Defines all the interations with the canvas, e.g. changing the current brush, or colour
+
+* js/layout.js
 
 CSS:
 * main.css: This file contains all the CSS settings for the game

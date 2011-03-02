@@ -150,13 +150,20 @@ var PaintBrush = new Class({
 
 // define a colour pick
 var ColourPicker = new Class({
-    initialize: function (drawingCxt) {
+    initialize: function (drawingCxt, onFinish) {
         // get the cursor associated with the pencil brush
         this.getCursor = function () {
             return "url(cursors/colour_picker_cursor.cur), crosshair";
         };
 
         var _colour;
+
+        function colourToHex(colourValue) {
+            var colourMap = "0123456789abcdef";
+            var multiplier = Math.floor(colourValue / 16), rem = colourValue % 16;
+
+            return colourMap[multiplier] + colourMap[rem];
+        }
 
         this.setColour = function (colour) {
         };
@@ -172,9 +179,9 @@ var ColourPicker = new Class({
             var rgba = drawingCxt.getImageData(position.X, position.Y, 1, 1).data;
 
             var r = rgba[0], g = rgba[1], b = rgba[2], a = rgba[3] / 255.0;
-            _colour = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+            _colour = colourToHex(r) + colourToHex(g) + colourToHex(b);
 
-            alert(_colour);
+            onFinish("#" + _colour.toString(16));
         };
     }
 });
