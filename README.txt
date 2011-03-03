@@ -21,7 +21,7 @@ JAVASCRIPTS:
 
 * js/canvas.js: Defines all the interations with the canvas, e.g. changing the current brush, or colour
 
-* js/layout.js
+* js/layout.js: Sets up the accordion and the event handler for the buttons, etc.
 
 CSS:
 * main.css: This file contains all the CSS settings for the game

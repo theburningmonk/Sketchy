@@ -175,3 +175,11 @@
     margin: 5px auto;
     background: black;
 }
+
+/********************
+ *		CANVAS		*
+ ********************/
+#output-img
+{
+	margin-top: 10px;
+}

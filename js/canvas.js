@@ -4,6 +4,7 @@ var canvasOffsetLeft,   // the left offset for the canvas elements
     drawingCanvasCxt,   // 2D drawing context for the drawing canvas
     overlayCanvas,      // canvas element for the overlay canvas
     overlayCanvasCxt,   // 2D drawing context for the overlay canvas
+    outputImage,        // output image
     strokeColour,       // the currently selected stroke colour
     currentBrush,       // the brush selected to paint on the drawing canvas
     strokeColour,       // the span element showing the current stroke colour
@@ -103,6 +104,8 @@ function initializeCanvas() {
     overlayCanvas = $("#overlay");
     overlayCanvasCxt = overlayCanvas.get(0).getContext("2d");
 
+    outputImage = document.getElementById("output-img");
+
     strokeColour = $("#stroke-colour");
 
     setCanvasOffsets();
@@ -149,4 +152,10 @@ function setColour(colour) {
     strokeColour.css("background", colour);
 
     $("#stroke-colour-picker").ColorPickerSetColor(colour);
+}
+
+// save the content of the canvas to the output image
+function saveCanvasToImage() {
+    var strDataUri = drawingCanvas.get(0).toDataURL();
+    outputImage.src = strDataUri;
 }

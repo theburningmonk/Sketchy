@@ -9,7 +9,14 @@ $(function () {
         autoHeight: false,
         fillSpace: true,
         navigation: true,
-        icons: icons
+        icons: icons,
+        change: function (event, ui) {
+            // save the canvas to the output img element if switching to
+            // the step 2 tab
+            if (ui.newHeader.context.id === "step-2") {
+                saveCanvasToImage();
+            }
+        }
     });
 
     // set up colour picker
@@ -27,20 +34,12 @@ $(function () {
             setColour(hexColour);
         }
     });
-    
+
     $("#stroke-colour-tool").toggle(function () {
         strokeColourPicker.stop().animate({ height: 173 }, 500);
     }, function () {
         strokeColourPicker.stop().animate({ height: 0 }, 500);
     });
-
-    /*
-    var lineWidthPicker = $("#line-width-picker");
-    $("#line-width-tool").toggle(function () {
-        lineWidthPicker.stop().animate({ height: 130 }, 500);
-    }, function () {
-        lineWidthPicker.stop().animate({ height: 0 }, 500);
-    });*/
 
     $("#delete-tool").click(function () {
         clearDrawing();

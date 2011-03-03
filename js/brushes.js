@@ -181,7 +181,7 @@ var ColourPicker = new Class({
             var r = rgba[0], g = rgba[1], b = rgba[2], a = rgba[3] / 255.0;
             _colour = colourToHex(r) + colourToHex(g) + colourToHex(b);
 
-            onFinish("#" + _colour.toString(16));
+            onFinish("#" + _colour);
         };
     }
 });
