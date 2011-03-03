@@ -1,3 +1,4 @@
+// initialize the controls
 $(function () {
     // set up the high level accordion
     var icons = {
@@ -20,8 +21,7 @@ $(function () {
     });
 
     // set up colour picker
-    var strokeColour = $("#stroke-colour"),
-        strokeColourPicker = $("#stroke-colour-picker");
+    var strokeColourPicker = $("#stroke-colour-picker");
     strokeColourPicker.ColorPicker({
         flat: true,
         color: '#000',

@@ -5,12 +5,21 @@ var canvasOffsetLeft,   // the left offset for the canvas elements
     overlayCanvas,      // canvas element for the overlay canvas
     overlayCanvasCxt,   // 2D drawing context for the overlay canvas
     outputImage,        // output image
-    strokeColour,       // the currently selected stroke colour
     currentBrush,       // the brush selected to paint on the drawing canvas
     strokeColour,       // the span element showing the current stroke colour
     currentColour,      // what's the colour to use with the current brush
     backgroundColour,   // the background colour
     brushes;            // the available brushes
+
+// changes the stroke colour of the drawing canvas
+function setColour(colour) {
+    currentColour = colour;
+    currentBrush.setColour(currentColour);
+
+    strokeColour.css("background", colour);
+
+    $("#stroke-colour-picker").ColorPickerSetColor(colour);
+}
 
 function unbindMouseEvents() {
     overlayCanvas.unbind("mousemove").unbind("mouseup").unbind("mouseout");
@@ -142,16 +151,6 @@ function initializeCanvas() {
     setBrush("pencil");
 
     clearDrawing();
-}
-
-// changes the stroke colour of the drawing canvas
-function setColour(colour) {
-    currentColour = colour;
-    currentBrush.setColour(currentColour);
-
-    strokeColour.css("background", colour);
-
-    $("#stroke-colour-picker").ColorPickerSetColor(colour);
 }
 
 // save the content of the canvas to the output image

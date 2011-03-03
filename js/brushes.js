@@ -178,7 +178,7 @@ var ColourPicker = new Class({
             // get the image data for the pixel
             var rgba = drawingCxt.getImageData(position.X, position.Y, 1, 1).data;
 
-            var r = rgba[0], g = rgba[1], b = rgba[2], a = rgba[3] / 255.0;
+            var r = rgba[0], g = rgba[1], b = rgba[2];
             _colour = colourToHex(r) + colourToHex(g) + colourToHex(b);
 
             onFinish("#" + _colour);
