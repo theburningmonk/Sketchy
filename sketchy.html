@@ -4,6 +4,9 @@
     <title>Sketchy</title>
 	
 	<link rel="shortcut icon" href="favicon.ico"/>
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Schoolbell:regular"/>
+
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
     <link rel="stylesheet" type="text/css" href="css/layout.css"/>
 	<link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui-1.8.10.custom.css"/>
@@ -11,6 +14,8 @@
 	
 	<script type="text/javascript" src="js/jquery/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery-ui-1.8.10.custom.min.js"></script>
+    <script type="text/javascript" src="js/rxjs/rx.js"></script>
+    <script type="text/javascript" src="js/rxjs/rx.jQuery.js"></script>
 	<script type="text/javascript" src="js/mootools/mootools-core-compressed-1.3.js"></script>
 	<script type="text/javascript" src="js/mootools/mootools-more-compressed-1.3.js"></script>
     <script type="text/javascript" src="js/modernizr/modernizr-1.6.min.js"></script>
@@ -30,9 +35,22 @@
             }
 
             function initialize() {
-                loadImages();
+                var imagesLoaded = $(document).toObservable("images-loaded");
+                var cursorsLoaded = $(document).toObservable("cursors-loaded");
 
+                // fade out the splash panel when images and cursors are loaded
+                imagesLoaded
+                    .Zip(cursorsLoaded, function (left, right) { return right; })
+                    .Delay(1000)
+                    .Subscribe(function () {
+                        $("#splash").fadeOut("slow");
+                    });
+
+                // initialize the canvas
                 initializeCanvas();
+
+                // load the images
+                loadImages();                
             }
 
             function loadImages() {
@@ -48,15 +66,31 @@
                                "cursors/pencil_cursor.cur",
                                "cursors/spray_cursor.cur"];
 
-                new Asset.images(images);
-                new Asset.images(cursors);
+                // fire the images-loaded event when all images are loaded
+                Asset.images(images, {
+                    onComplete: function () {
+                        $(document).trigger("images-loaded");
+                    }
+                });
+
+                // fire the cursors-loaded event when all cursors are loaded
+                Asset.images(cursors, {
+                    onComplete: function () {
+                        $(document).trigger("cursors-loaded");
+                    }
+                });
             }
         });
     </script>
 </head>
 <body>
     <div id="wrapper">
-        <aside id="message"></aside>        
+        <aside id="message"></aside>
+
+        <div id="splash">
+            <p>Loading...</p>
+            <img src="images/ajax-loader.gif" />
+        </div>
 
         <div id="accordion">
             <h2 id="step-1"><a href="#">Step 1 - Create</a></h2>

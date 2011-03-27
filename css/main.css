@@ -3,6 +3,7 @@
 	margin: 0px;
 	padding: 0px;
 	color: white;
+	font-family: 'Schoolbell', serif;
 }
 
 body 	
@@ -43,4 +44,27 @@ aside
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
+}
+
+#splash
+{
+	width: 800px;
+	height: 650px;
+	background-color: black;
+	position: absolute;
+	z-index: 1000;
+}
+
+#splash p
+{
+	font-size: 28px;
+	margin: 40% 45%;
+	position: absolute;
+}
+
+#splash img
+{	
+	width: 5%;
+	margin: 47.5% 47.5%;
+	position: absolute;
 }
