@@ -7,8 +7,11 @@ theburningmonk@gmail.com
 
 INTRO:
 
-This is a web app based on HTML5's canvas element that lets you draw on a canvas area with a number
-of different tools.
+This is a web app based on HTML5's canvas element that lets you draw on a canvas area with a number of different tools.
+
+LIVE DEMO:
+
+You can try the live demo at http://sketchy.theburningmonk.com or http://bit.ly/Y5IpST.
 
 THIRD-PARTY LIBRARIES:
 * jQuery (in js/jquery)
